@@ -13,7 +13,6 @@ OthelloBoard::OthelloBoard() {
    mBoard[BOARD_SIZE / 2][(BOARD_SIZE / 2) - 1] = Player::BLACK;
    mBoard[(BOARD_SIZE / 2) - 1][(BOARD_SIZE / 2) - 1] = Player::WHITE;
    mBoard[BOARD_SIZE / 2][BOARD_SIZE / 2] = Player::WHITE;
-   mNextPlayer = Player::BLACK;
 }
 
 void OthelloBoard::GetPossibleMoves(std::vector<GameMove *> *list) const {

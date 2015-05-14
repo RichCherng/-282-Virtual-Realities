@@ -11,52 +11,63 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-   
+
+   //---------Main loop----------------------
    do {
+      //Declaring Variable
       GameBoard *board = nullptr;
       GameView *v = nullptr;
-      string userInput;
       vector<GameMove *> possMoves;
       GameMove *m = nullptr;
+      string gameType;
       cout << "What game do you want to play?" << endl
          << "1) Othello; 2) Tic Tac Toe; 3) Connect Four; 4) Exit" << endl;
-      getline(cin, userInput);
-      if (userInput == "1") {
+      getline(cin, gameType);
+      //Initialize Othello Game
+      if (gameType == "1") {
          cout << "User want to play Othello" << endl;
          board = new OthelloBoard();
          v = new OthelloView(board);
       }
-      else if (userInput == "2") {
+      //Initialize Tic Tac Toe Game
+      else if (gameType == "2") {
          cout << "User want to play Tic Tac Toe" << endl;
          board = new TicTacToeBoard();
          v = new TicTacToeView(board);
       }
-      else if (userInput == "3") {
+      //Initialize Connect Four
+      else if (gameType == "3") {
          cout << "User want to play Connect Four" << endl;
       }
-      else if (userInput == "4") {
+      //Quit Game
+      else if (gameType == "4") {
          break;
       }
+      //Game loop
+      bool quit = false;
       do {
+         //If the game hasn't been chosen then quit
          if (board == nullptr && v == nullptr)
             break;
+         //Print out the board
          cout << *v << endl;
+         //Get Possible Moves
          board->GetPossibleMoves(&possMoves);
          cout << "Board Possible Move: ";
+         //cout << possMoves.size();
          for (GameMove* i : possMoves) {
             cout << (string)(*i) << " ";
          }
          cout << endl;
-         if (board->GetNextPlayer() > 0) {
+         //-------Display Next Player---------
+         cout << board->GetPlayerString(board->GetNextPlayer()) + " Turn" << endl;
 
-            cout << "Black Turn" << endl;
-         }
-         else
-            cout << "White Turn" << endl;
+         //------Reading in input--------------------
          string command;
          getline(std::cin, command);
          stringstream ss(command);
          ss >> command;
+         //Reading in input
          if (command == "move") {
             if (!ss.eof()) {
                ss >> command;
@@ -64,7 +75,7 @@ int main(int argc, char* argv[]) {
                try {
                   *m = command;
                   bool valid = false;
-
+                  //Check for possible move
                   for (GameMove* i : possMoves) {
                      if ((*m).Equals(*(i))) {
                         valid = true;
@@ -76,7 +87,7 @@ int main(int argc, char* argv[]) {
                      cout << "Invalid move" << endl;
                   }
                }
-               catch (OthelloException &e) {
+               catch (GameException &e) {
                   delete m;
                   cout << e.what() << endl;
                }
@@ -84,7 +95,7 @@ int main(int argc, char* argv[]) {
             else
                cout << "Invalid input" << endl;
          }
-
+         //---------Undo move-----------
          if (command == "undo") {
             if (!ss.eof()) {
                ss >> command;
@@ -96,22 +107,27 @@ int main(int argc, char* argv[]) {
                }
             }
          }
+         //----------Show Value----------
          if (command == "showValue") {
             cout << "Board Value: " << board->GetValue() << endl;
          }
+         //-----------Show History--------
          if (command == "showHistory") {
             vector<GameMove*> lis(*(board->GetMoveHistory()));
             int turnCount = lis.size();
             for (int i = lis.size(); i > 0; i--) {
-               if (i % 2 == 1) {
-                  cout << "Black ";
-               }
-               else
-                  cout << "White";
+               /* if (i % 2 == 1) {
+                   cout << "Black ";
+                   }
+                   else
+                   cout << "White";*/
+               cout << board->GetPlayerString(i);
                cout << (string)(*lis[i - 1]) << endl;
             }
          }
+         //-----------Quit-------------
          if (command == "quit") {
+            quit = true;
             for (GameMove* i : possMoves) {
                delete i;
             }
@@ -122,8 +138,16 @@ int main(int argc, char* argv[]) {
          }
          possMoves.clear();
       } while (!board->IsFinished());
+      if (!quit) {
+         cout << *v << endl; 
+         if (board->GetValue() == 0)
+            cout << "TIE" << endl;
+         else
+            cout << board->GetPlayerString(board->GetValue()) + " Win" << endl;
+      }
       delete board;
       delete v;
+      //possMoves.clear();
 
    } while (true);
    system("pause");

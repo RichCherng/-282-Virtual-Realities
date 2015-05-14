@@ -7,7 +7,7 @@
 #include "TicTacToeMove.h"
 
 
-const int BOARDSIZE = 3;
+const int BOARDSIZE = 3;              
 
 class TicTacToeBoard : public GameBoard {
 
@@ -30,13 +30,23 @@ public:
    }
 
    virtual bool IsFinished() const {
-      return mPassCount == 2;
+     /* if (finish) {
+        
+      }
+      else {
+         return finish;
+      }
+      */
+      return finish;
+   }
+   std::string GetPlayerString(char player) {
+      return (player == 1 ? "X" : "O");
    }
 
 private:
    friend class TicTacToeView;
    char mBoard[BOARDSIZE][BOARDSIZE];
-   int mPassCount;
+   bool finish = false;;
 };
 
 #endif

@@ -12,9 +12,9 @@ void TicTacToeView::PrintBoard(ostream &s) const {
       for (int col = 0; col < BOARDSIZE; col++) {
          if (mTicTacToeBoard->mBoard[row][col] == 0)
             s << ". ";
-         else if (mTicTacToeBoard->mBoard[row][col] == 1)
-            s << "0 ";
          else if (mTicTacToeBoard->mBoard[row][col] == -1)
+            s << "0 ";
+         else if (mTicTacToeBoard->mBoard[row][col] == 1)
             s << "X ";
       }
    }
