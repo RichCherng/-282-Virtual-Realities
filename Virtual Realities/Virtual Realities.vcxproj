@@ -87,6 +87,7 @@
     <ClCompile Include="TicTacToeView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConnectFourMove.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameExceptions.h" />
     <ClInclude Include="GameMove.h" />

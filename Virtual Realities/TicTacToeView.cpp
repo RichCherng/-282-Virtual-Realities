@@ -13,7 +13,7 @@ void TicTacToeView::PrintBoard(ostream &s) const {
          if (mTicTacToeBoard->mBoard[row][col] == 0)
             s << ". ";
          else if (mTicTacToeBoard->mBoard[row][col] == -1)
-            s << "0 ";
+            s << "O ";
          else if (mTicTacToeBoard->mBoard[row][col] == 1)
             s << "X ";
       }

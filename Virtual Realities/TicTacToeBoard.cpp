@@ -50,7 +50,7 @@ void TicTacToeBoard::ApplyMove(GameMove *move) {
             else {
                bRow -= 3 * r;
                bCol -= 3 * c;
-               /cout << bRow << " " << bCol << endl;
+               //cout << bRow << " " << bCol << endl;
                if ((InBounds(bRow, bCol)) && mBoard[bRow][bCol] == mNextPlayer) {
                   mValue = mNextPlayer;
                   finish = true;

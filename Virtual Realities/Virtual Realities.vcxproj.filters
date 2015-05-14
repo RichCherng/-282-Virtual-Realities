@@ -68,5 +68,8 @@
     <ClInclude Include="TicTacToeView.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectFourMove.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
