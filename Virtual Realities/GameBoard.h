@@ -14,10 +14,11 @@ public:
 
       // remove the following line once you have finished this function.
       // This exception is just a reminder to write this function.
-      //throw GameException("You need to write the GameBoard destructor!!! See GameBoard.h");
+      throw GameException("You need to write the GameBoard destructor!!! See GameBoard.h");
       for (GameMove *move : mHistory) {
          delete move;
       }
+      mHistory.clear();
    }
 
    // Initializes a GameBoard with a NextPlayer of 1, and a Value of 0

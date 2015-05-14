@@ -82,6 +82,9 @@
     <ClCompile Include="OthelloBoard.cpp" />
     <ClCompile Include="OthelloMove.cpp" />
     <ClCompile Include="OthelloView.cpp" />
+    <ClCompile Include="TicTacToeBoard.cpp" />
+    <ClCompile Include="TicTacToeMove.cpp" />
+    <ClCompile Include="TicTacToeView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameBoard.h" />

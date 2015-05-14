@@ -3,6 +3,8 @@
 #include "GameView.h"
 #include "OthelloBoard.h"
 #include "OthelloView.h"
+#include "TicTacToeBoard.h"
+#include "TicTacToeView.h"
 #include <iostream>
 #include <sstream>
 
@@ -26,6 +28,8 @@ int main(int argc, char* argv[]) {
       }
       else if (userInput == "2") {
          cout << "User want to play Tic Tac Toe" << endl;
+         board = new TicTacToeBoard();
+         v = new TicTacToeView(board);
       }
       else if (userInput == "3") {
          cout << "User want to play Connect Four" << endl;
